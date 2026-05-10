@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodSphere - Interactive Mood Based Room Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-spa"></i>
+                <span>MoodSphere</span>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#moods" class="nav-link">Moods</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1 class="hero-title">Transform Your Digital Space Through Emotion</h1>
+                <p class="hero-subtitle">Experience an interactive virtual room that changes atmosphere, lighting, visuals, and energy based on your mood.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">
+                        <i class="fas fa-play"></i> Explore Experience
+                    </button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('moods').scrollIntoView({behavior:'smooth'})">
+                        <i class="fas fa-heart"></i> Choose Mood
+                    </button>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="room-preview">
+                    <div class="room-glow"></div>
+                    <div class="floating-particle p1"></div>
+                    <div class="floating-particle p2"></div>
+                    <div class="floating-particle p3"></div>
+                    <div class="room-window"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mood Selection -->
+    <section id="moods" class="moods-section">
+        <h2 class="section-title">Select Your Mood</h2>
+        <div class="moods-grid">
+            <button class="mood-card" data-mood="relaxed" onclick="switchMood('relaxed')">
+                <i class="fas fa-leaf"></i>
+                <span>Relaxed</span>
+            </button>
+            <button class="mood-card" data-mood="focused" onclick="switchMood('focused')">
+                <i class="fas fa-bolt"></i>
+                <span>Focused</span>
+            </button>
+            <button class="mood-card" data-mood="rainy" onclick="switchMood('rainy')">
+                <i class="fas fa-cloud-rain"></i>
+                <span>Rainy</span>
+            </button>
+            <button class="mood-card" data-mood="romantic" onclick="switchMood('romantic')">
+                <i class="fas fa-heart"></i>
+                <span>Romantic</span>
+            </button>
+            <button class="mood-card" data-mood="energetic" onclick="switchMood('energetic')">
+                <i class="fas fa-fire"></i>
+                <span>Energetic</span>
+            </button>
+            <button class="mood-card" data-mood="dreamy" onclick="switchMood('dreamy')">
+                <i class="fas fa-star"></i>
+                <span>Dreamy</span>
+            </button>
+            <button class="mood-card" data-mood="midnight" onclick="switchMood('midnight')">
+                <i class="fas fa-moon"></i>
+                <span>Midnight</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Experience Room -->
+    <section id="experience" class="experience-section">
+        <div class="experience-container">
+            <div class="main-room" id="mainRoom">
+                <div class="room-interior">
+                    <div class="room-light" id="roomLight"></div>
+                    <div class="room-particles" id="roomParticles"></div>
+                    <div class="room-quote">
+                        <p id="quoteText">Welcome to your emotional sanctuary</p>
+                        <span id="quoteMood">— Relaxed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <div class="panel-item">
+                    <label><i class="fas fa-volume-up"></i> Sound</label>
+                    <input type="checkbox" id="soundToggle" checked>
+                </div>
+                <div class="panel-item">
+                    <label><i class="fas fa-wave-square"></i> Intensity</label>
+                    <input type="range" id="intensitySlider" min="0" max="100" value="50">
+                </div>
+                <div class="panel-item">
+                    <label><i class="fas fa-lightbulb"></i> Brightness</label>
+                    <input type="range" id="brightnessSlider" min="0" max="100" value="70">
+                </div>
+                <div class="panel-item">
+                    <label><i class="fas fa-tachometer-alt"></i> Speed</label>
+                    <input type="range" id="speedSlider" min="0" max="100" value="50">
+                </div>
+                <div class="panel-stats">
+                    <div class="stat"><i class="fas fa-heart-pulse"></i> <span id="currentMood">Relaxed</span></div>
+                    <div class="stat"><i class="fas fa-clock"></i> <span id="liveTime">00:00</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics -->
+    <section class="analytics-section">
+        <h2 class="section-title">Experience Analytics</h2>
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <i class="fas fa-balance-scale"></i>
+                <div class="analytics-content">
+                    <h3>Mood Stability</h3>
+                    <div class="counter" data-target="85">0</div>
+                    <span class="percent">%</span>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <i class="fas fa-bolt"></i>
+                <div class="analytics-content">
+                    <h3>Energy Level</h3>
+                    <div class="counter" data-target="72">0</div>
+                    <span class="percent">%</span>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <i class="fas fa-spa"></i>
+                <div class="analytics-content">
+                    <h3>Relaxation Index</h3>
+                    <div class="counter" data-target="90">0</div>
+                    <span class="percent">%</span>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <i class="fas fa-brain"></i>
+                <div class="analytics-content">
+                    <h3>Focus Intensity</h3>
+                    <div class="counter" data-target="78">0</div>
+                    <span class="percent">%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Mood Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="gallery-overlay">
+                    <h3><i class="fas fa-leaf"></i> Relaxed</h3>
+                </div>
+            </div>
+            <div class="gallery-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                <div class="gallery-overlay">
+                    <h3><i class="fas fa-heart"></i> Romantic</h3>
+                </div>
+            </div>
+            <div class="gallery-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                <div class="gallery-overlay">
+                    <h3><i class="fas fa-cloud-rain"></i> Rainy</h3>
+                </div>
+            </div>
+            <div class="gallery-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <div class="gallery-overlay">
+                    <h3><i class="fas fa-fire"></i> Energetic</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">About MoodSphere</h2>
+        <p class="about-text">MoodSphere combines immersive design, dynamic interaction, and atmospheric visuals to create a digital emotional environment that adapts to the user's mood in real time. Experience how technology can enhance emotional well-being through interactive design.</p>
+        <div class="about-cards">
+            <div class="about-card">
+                <i class="fas fa-palette"></i>
+                <h3>Immersive Design</h3>
+                <p>Cinematic visuals that respond to your emotional state</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-laptop"></i>
+                <h3>Interactive Experience</h3>
+                <p>Real-time control over your digital environment</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-heart"></i>
+                <h3>Emotional Technology</h3>
+                <p>Technology designed with your well-being in mind</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-spa"></i>
+                <span>MoodSphere</span>
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#moods">Moods</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <p class="footer-copy">&copy; 2026 MoodSphere. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
